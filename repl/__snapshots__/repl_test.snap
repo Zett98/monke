@@ -1,0 +1,12 @@
+
+[TestReplLoop/repl_tests - 1]
+0
+ERROR: type mismatch: BOOLEAN > INTEGER
+true
+true
+true
+Woops! We ran into some monkey business here!
+ parser errors:
+    expected next token to be `=`, got `INT` instead
+
+---

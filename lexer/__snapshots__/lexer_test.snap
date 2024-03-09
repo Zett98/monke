@@ -1,0 +1,296 @@
+
+[TestNextToken/lexer_tests - 1]
+token.Token{Type:"LET", Literal:"let"}
+---
+
+[TestNextToken/lexer_tests - 2]
+token.Token{Type:"IDENT", Literal:"five"}
+---
+
+[TestNextToken/lexer_tests - 3]
+token.Token{Type:"=", Literal:"="}
+---
+
+[TestNextToken/lexer_tests - 4]
+token.Token{Type:"INT", Literal:"5"}
+---
+
+[TestNextToken/lexer_tests - 5]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 6]
+token.Token{Type:"LET", Literal:"let"}
+---
+
+[TestNextToken/lexer_tests - 7]
+token.Token{Type:"IDENT", Literal:"ten"}
+---
+
+[TestNextToken/lexer_tests - 8]
+token.Token{Type:"=", Literal:"="}
+---
+
+[TestNextToken/lexer_tests - 9]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 10]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 11]
+token.Token{Type:"LET", Literal:"let"}
+---
+
+[TestNextToken/lexer_tests - 12]
+token.Token{Type:"IDENT", Literal:"add"}
+---
+
+[TestNextToken/lexer_tests - 13]
+token.Token{Type:"=", Literal:"="}
+---
+
+[TestNextToken/lexer_tests - 14]
+token.Token{Type:"FUNCTION", Literal:"fn"}
+---
+
+[TestNextToken/lexer_tests - 15]
+token.Token{Type:"(", Literal:"("}
+---
+
+[TestNextToken/lexer_tests - 16]
+token.Token{Type:"IDENT", Literal:"x"}
+---
+
+[TestNextToken/lexer_tests - 17]
+token.Token{Type:",", Literal:","}
+---
+
+[TestNextToken/lexer_tests - 18]
+token.Token{Type:"IDENT", Literal:"y"}
+---
+
+[TestNextToken/lexer_tests - 19]
+token.Token{Type:")", Literal:")"}
+---
+
+[TestNextToken/lexer_tests - 20]
+token.Token{Type:"{", Literal:"{"}
+---
+
+[TestNextToken/lexer_tests - 21]
+token.Token{Type:"IDENT", Literal:"x"}
+---
+
+[TestNextToken/lexer_tests - 22]
+token.Token{Type:"+", Literal:"+"}
+---
+
+[TestNextToken/lexer_tests - 23]
+token.Token{Type:"IDENT", Literal:"y"}
+---
+
+[TestNextToken/lexer_tests - 24]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 25]
+token.Token{Type:"}", Literal:"}"}
+---
+
+[TestNextToken/lexer_tests - 26]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 27]
+token.Token{Type:"LET", Literal:"let"}
+---
+
+[TestNextToken/lexer_tests - 28]
+token.Token{Type:"IDENT", Literal:"result"}
+---
+
+[TestNextToken/lexer_tests - 29]
+token.Token{Type:"=", Literal:"="}
+---
+
+[TestNextToken/lexer_tests - 30]
+token.Token{Type:"IDENT", Literal:"add"}
+---
+
+[TestNextToken/lexer_tests - 31]
+token.Token{Type:"(", Literal:"("}
+---
+
+[TestNextToken/lexer_tests - 32]
+token.Token{Type:"IDENT", Literal:"five"}
+---
+
+[TestNextToken/lexer_tests - 33]
+token.Token{Type:",", Literal:","}
+---
+
+[TestNextToken/lexer_tests - 34]
+token.Token{Type:"IDENT", Literal:"ten"}
+---
+
+[TestNextToken/lexer_tests - 35]
+token.Token{Type:")", Literal:")"}
+---
+
+[TestNextToken/lexer_tests - 36]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 37]
+token.Token{Type:"!", Literal:"!"}
+---
+
+[TestNextToken/lexer_tests - 38]
+token.Token{Type:"-", Literal:"-"}
+---
+
+[TestNextToken/lexer_tests - 39]
+token.Token{Type:"/", Literal:"/"}
+---
+
+[TestNextToken/lexer_tests - 40]
+token.Token{Type:"*", Literal:"*"}
+---
+
+[TestNextToken/lexer_tests - 41]
+token.Token{Type:"INT", Literal:"5"}
+---
+
+[TestNextToken/lexer_tests - 42]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 43]
+token.Token{Type:"INT", Literal:"5"}
+---
+
+[TestNextToken/lexer_tests - 44]
+token.Token{Type:"<", Literal:"<"}
+---
+
+[TestNextToken/lexer_tests - 45]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 46]
+token.Token{Type:">", Literal:">"}
+---
+
+[TestNextToken/lexer_tests - 47]
+token.Token{Type:"INT", Literal:"5"}
+---
+
+[TestNextToken/lexer_tests - 48]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 49]
+token.Token{Type:"IF", Literal:"if"}
+---
+
+[TestNextToken/lexer_tests - 50]
+token.Token{Type:"(", Literal:"("}
+---
+
+[TestNextToken/lexer_tests - 51]
+token.Token{Type:"INT", Literal:"5"}
+---
+
+[TestNextToken/lexer_tests - 52]
+token.Token{Type:"<", Literal:"<"}
+---
+
+[TestNextToken/lexer_tests - 53]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 54]
+token.Token{Type:")", Literal:")"}
+---
+
+[TestNextToken/lexer_tests - 55]
+token.Token{Type:"{", Literal:"{"}
+---
+
+[TestNextToken/lexer_tests - 56]
+token.Token{Type:"RETURN", Literal:"return"}
+---
+
+[TestNextToken/lexer_tests - 57]
+token.Token{Type:"TRUE", Literal:"true"}
+---
+
+[TestNextToken/lexer_tests - 58]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 59]
+token.Token{Type:"}", Literal:"}"}
+---
+
+[TestNextToken/lexer_tests - 60]
+token.Token{Type:"ELSE", Literal:"else"}
+---
+
+[TestNextToken/lexer_tests - 61]
+token.Token{Type:"{", Literal:"{"}
+---
+
+[TestNextToken/lexer_tests - 62]
+token.Token{Type:"RETURN", Literal:"return"}
+---
+
+[TestNextToken/lexer_tests - 63]
+token.Token{Type:"FALSE", Literal:"false"}
+---
+
+[TestNextToken/lexer_tests - 64]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 65]
+token.Token{Type:"}", Literal:"}"}
+---
+
+[TestNextToken/lexer_tests - 66]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 67]
+token.Token{Type:"==", Literal:"=="}
+---
+
+[TestNextToken/lexer_tests - 68]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 69]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 70]
+token.Token{Type:"INT", Literal:"10"}
+---
+
+[TestNextToken/lexer_tests - 71]
+token.Token{Type:"!=", Literal:"!="}
+---
+
+[TestNextToken/lexer_tests - 72]
+token.Token{Type:"INT", Literal:"9"}
+---
+
+[TestNextToken/lexer_tests - 73]
+token.Token{Type:";", Literal:";"}
+---
+
+[TestNextToken/lexer_tests - 74]
+token.Token{Type:"EOF", Literal:""}
+---

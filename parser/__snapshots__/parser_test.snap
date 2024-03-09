@@ -1,0 +1,653 @@
+
+[TestParse/failing_passes - 1]
+
+        let x 5;
+        let = 10;
+        let 838383;
+    
+[]error{
+    &errors.errorString{s:"parser error: \"expected next token to be `=`, got `INT` instead\""},
+    &errors.errorString{s:"parser error: \"expected next token to be `IDENT`, got `=` instead\""},
+    &errors.errorString{s:"parser error: \"no prefix parse function for = found\""},
+    &errors.errorString{s:"parser error: \"expected next token to be `IDENT`, got `INT` instead\""},
+}
+---
+
+[TestParse/succesfull_passes - 1]
+
+        let z = 5 * 5;
+        let y = 5 < 10;
+        let foobar = (2 + 2) / 4;
+    
+[]ast.Statement{
+    &ast.LetStatement{
+        Token: token.Token{Type:"LET", Literal:"let"},
+        Name:  &ast.Identifier{
+            Token: token.Token{Type:"IDENT", Literal:"z"},
+            Value: "z",
+        },
+        Value: &ast.InfixExpression{
+            Token: token.Token{Type:"*", Literal:"*"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "*",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+    &ast.LetStatement{
+        Token: token.Token{Type:"LET", Literal:"let"},
+        Name:  &ast.Identifier{
+            Token: token.Token{Type:"IDENT", Literal:"y"},
+            Value: "y",
+        },
+        Value: &ast.InfixExpression{
+            Token: token.Token{Type:"<", Literal:"<"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "<",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"10"},
+                Value: 10,
+            },
+        },
+    },
+    &ast.LetStatement{
+        Token: token.Token{Type:"LET", Literal:"let"},
+        Name:  &ast.Identifier{
+            Token: token.Token{Type:"IDENT", Literal:"foobar"},
+            Value: "foobar",
+        },
+        Value: &ast.InfixExpression{
+            Token: token.Token{Type:"/", Literal:"/"},
+            Left:  &ast.InfixExpression{
+                Token: token.Token{Type:"+", Literal:"+"},
+                Left:  &ast.IntegerLiteral{
+                    Token: token.Token{Type:"INT", Literal:"2"},
+                    Value: 2,
+                },
+                Operator: "+",
+                Right:    &ast.IntegerLiteral{
+                    Token: token.Token{Type:"INT", Literal:"2"},
+                    Value: 2,
+                },
+            },
+            Operator: "/",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"4"},
+                Value: 4,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 2]
+
+        return 5;
+        return 10;
+        return 993322;
+    
+[]ast.Statement{
+    &ast.ReturnStatement{
+        Token:       token.Token{Type:"RETURN", Literal:"return"},
+        ReturnValue: &ast.IntegerLiteral{
+            Token: token.Token{Type:"INT", Literal:"5"},
+            Value: 5,
+        },
+    },
+    &ast.ReturnStatement{
+        Token:       token.Token{Type:"RETURN", Literal:"return"},
+        ReturnValue: &ast.IntegerLiteral{
+            Token: token.Token{Type:"INT", Literal:"10"},
+            Value: 10,
+        },
+    },
+    &ast.ReturnStatement{
+        Token:       token.Token{Type:"RETURN", Literal:"return"},
+        ReturnValue: &ast.IntegerLiteral{
+            Token: token.Token{Type:"INT", Literal:"993322"},
+            Value: 993322,
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 3]
+foobar;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"IDENT", Literal:"foobar"},
+        Expression: &ast.Identifier{
+            Token: token.Token{Type:"IDENT", Literal:"foobar"},
+            Value: "foobar",
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 4]
+5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.IntegerLiteral{
+            Token: token.Token{Type:"INT", Literal:"5"},
+            Value: 5,
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 5]
+-15
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"-", Literal:"-"},
+        Expression: &ast.PrefixExpression{
+            Token:    token.Token{Type:"-", Literal:"-"},
+            Operator: "-",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"15"},
+                Value: 15,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 6]
+!5
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"!", Literal:"!"},
+        Expression: &ast.PrefixExpression{
+            Token:    token.Token{Type:"!", Literal:"!"},
+            Operator: "!",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 7]
+5 + 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"+", Literal:"+"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "+",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 8]
+5 * 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"*", Literal:"*"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "*",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 9]
+5 < 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"<", Literal:"<"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "<",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 10]
+5 > 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:">", Literal:">"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: ">",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 11]
+5 / 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"/", Literal:"/"},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "/",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 12]
+5 == 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"==", Literal:"=="},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "==",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 13]
+5 != 5;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"INT", Literal:"5"},
+        Expression: &ast.InfixExpression{
+            Token: token.Token{Type:"!=", Literal:"!="},
+            Left:  &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+            Operator: "!=",
+            Right:    &ast.IntegerLiteral{
+                Token: token.Token{Type:"INT", Literal:"5"},
+                Value: 5,
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 14]
+true;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"TRUE", Literal:"true"},
+        Expression: &ast.Boolean{
+            Token: token.Token{Type:"TRUE", Literal:"true"},
+            Value: true,
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 15]
+false;
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"FALSE", Literal:"false"},
+        Expression: &ast.Boolean{
+            Token: token.Token{Type:"FALSE", Literal:"false"},
+            Value: true,
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 16]
+
+        if (x < y) {
+             x 
+        }
+    
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"IF", Literal:"if"},
+        Expression: &ast.IfExpression{
+            Token:     token.Token{Type:"IF", Literal:"if"},
+            Condition: &ast.InfixExpression{
+                Token: token.Token{Type:"<", Literal:"<"},
+                Left:  &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"x"},
+                    Value: "x",
+                },
+                Operator: "<",
+                Right:    &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"y"},
+                    Value: "y",
+                },
+            },
+            Consequence: &ast.BlockStatement{
+                Token:      token.Token{Type:"{", Literal:"{"},
+                Statements: {
+                    &ast.ExpressionStatement{
+                        Token:      token.Token{Type:"IDENT", Literal:"x"},
+                        Expression: &ast.Identifier{
+                            Token: token.Token{Type:"IDENT", Literal:"x"},
+                            Value: "x",
+                        },
+                    },
+                },
+            },
+            Alternative: (*ast.BlockStatement)(nil),
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 17]
+
+        if (x < y) {
+             x 
+        } else {
+            y
+        }
+    
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"IF", Literal:"if"},
+        Expression: &ast.IfExpression{
+            Token:     token.Token{Type:"IF", Literal:"if"},
+            Condition: &ast.InfixExpression{
+                Token: token.Token{Type:"<", Literal:"<"},
+                Left:  &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"x"},
+                    Value: "x",
+                },
+                Operator: "<",
+                Right:    &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"y"},
+                    Value: "y",
+                },
+            },
+            Consequence: &ast.BlockStatement{
+                Token:      token.Token{Type:"{", Literal:"{"},
+                Statements: {
+                    &ast.ExpressionStatement{
+                        Token:      token.Token{Type:"IDENT", Literal:"x"},
+                        Expression: &ast.Identifier{
+                            Token: token.Token{Type:"IDENT", Literal:"x"},
+                            Value: "x",
+                        },
+                    },
+                },
+            },
+            Alternative: &ast.BlockStatement{
+                Token:      token.Token{Type:"{", Literal:"{"},
+                Statements: {
+                    &ast.ExpressionStatement{
+                        Token:      token.Token{Type:"IDENT", Literal:"y"},
+                        Expression: &ast.Identifier{
+                            Token: token.Token{Type:"IDENT", Literal:"y"},
+                            Value: "y",
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 18]
+
+        fn(x, y) { 
+            x + y; 
+        };
+    
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"FUNCTION", Literal:"fn"},
+        Expression: &ast.FunctionLiteral{
+            Token:      token.Token{Type:"FUNCTION", Literal:"fn"},
+            Parameters: {
+                &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"x"},
+                    Value: "x",
+                },
+                &ast.Identifier{
+                    Token: token.Token{Type:"IDENT", Literal:"y"},
+                    Value: "y",
+                },
+            },
+            Body: &ast.BlockStatement{
+                Token:      token.Token{Type:"{", Literal:"{"},
+                Statements: {
+                    &ast.ExpressionStatement{
+                        Token:      token.Token{Type:"IDENT", Literal:"x"},
+                        Expression: &ast.InfixExpression{
+                            Token: token.Token{Type:"+", Literal:"+"},
+                            Left:  &ast.Identifier{
+                                Token: token.Token{Type:"IDENT", Literal:"x"},
+                                Value: "x",
+                            },
+                            Operator: "+",
+                            Right:    &ast.Identifier{
+                                Token: token.Token{Type:"IDENT", Literal:"y"},
+                                Value: "y",
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 19]
+
+        fn() { 
+            
+        };
+    
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"FUNCTION", Literal:"fn"},
+        Expression: &ast.FunctionLiteral{
+            Token:      token.Token{Type:"FUNCTION", Literal:"fn"},
+            Parameters: {
+            },
+            Body: &ast.BlockStatement{
+                Token:      token.Token{Type:"{", Literal:"{"},
+                Statements: {
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/succesfull_passes - 20]
+add(1, 2 * 3, 4 + 5);
+[]ast.Statement{
+    &ast.ExpressionStatement{
+        Token:      token.Token{Type:"IDENT", Literal:"add"},
+        Expression: &ast.CallExpression{
+            Token:    token.Token{Type:"(", Literal:"("},
+            Function: &ast.Identifier{
+                Token: token.Token{Type:"IDENT", Literal:"add"},
+                Value: "add",
+            },
+            Arguments: {
+                &ast.IntegerLiteral{
+                    Token: token.Token{Type:"INT", Literal:"1"},
+                    Value: 1,
+                },
+                &ast.InfixExpression{
+                    Token: token.Token{Type:"*", Literal:"*"},
+                    Left:  &ast.IntegerLiteral{
+                        Token: token.Token{Type:"INT", Literal:"2"},
+                        Value: 2,
+                    },
+                    Operator: "*",
+                    Right:    &ast.IntegerLiteral{
+                        Token: token.Token{Type:"INT", Literal:"3"},
+                        Value: 3,
+                    },
+                },
+                &ast.InfixExpression{
+                    Token: token.Token{Type:"+", Literal:"+"},
+                    Left:  &ast.IntegerLiteral{
+                        Token: token.Token{Type:"INT", Literal:"4"},
+                        Value: 4,
+                    },
+                    Operator: "+",
+                    Right:    &ast.IntegerLiteral{
+                        Token: token.Token{Type:"INT", Literal:"5"},
+                        Value: 5,
+                    },
+                },
+            },
+        },
+    },
+}
+---
+
+[TestPrec/Precedence_parsing - 1]
+-a * b
+((-a) * b)
+---
+
+[TestPrec/Precedence_parsing - 2]
+!-a
+(!(-a))
+---
+
+[TestPrec/Precedence_parsing - 3]
+a + b + c
+((a + b) + c)
+---
+
+[TestPrec/Precedence_parsing - 4]
+a + b - c
+(a + b)(-c)
+---
+
+[TestPrec/Precedence_parsing - 5]
+a * b * c
+((a * b) * c)
+---
+
+[TestPrec/Precedence_parsing - 6]
+a * b / c
+((a * b) / c)
+---
+
+[TestPrec/Precedence_parsing - 7]
+a + b / c
+(a + (b / c))
+---
+
+[TestPrec/Precedence_parsing - 8]
+a + b * c + d / e - f
+((a + (b * c)) + (d / e))(-f)
+---
+
+[TestPrec/Precedence_parsing - 9]
+3 + 4; -5 * 5
+(3 + 4)((-5) * 5)
+---
+
+[TestPrec/Precedence_parsing - 10]
+5 > 4 == 3 < 4
+((5 > 4) == (3 < 4))
+---
+
+[TestPrec/Precedence_parsing - 11]
+5 < 4 != 3 > 4
+((5 < 4) != (3 > 4))
+---
+
+[TestPrec/Precedence_parsing - 12]
+3 + 4 * 5 == 3 * 1 + 4 * 5
+((3 + (4 * 5)) == ((3 * 1) + (4 * 5)))
+---
+
+[TestPrec/Precedence_parsing - 13]
+3 + 4 * 5 == 3 * 1 + 4 * 5
+((3 + (4 * 5)) == ((3 * 1) + (4 * 5)))
+---
+
+[TestPrec/Precedence_parsing - 14]
+2 / (5 + 5)
+(2 / (5 + 5))
+---
+
+[TestPrec/Precedence_parsing - 15]
+!(true == true)
+(!(true == true))
+---
+
+[TestPrec/Precedence_parsing - 16]
+a + add(b * c) + d
+((a + add((b * c))) + d)
+---
+
+[TestPrec/Precedence_parsing - 17]
+add(a, b, 1, 2 * 3, 4 + 5, add(6, 7 * 8))
+add(a, b, 1, (2 * 3), (4 + 5), add(6, (7 * 8)))
+---
+
+[TestPrec/Precedence_parsing - 18]
+add(a + b + c * d / f + g)
+add((((a + b) + ((c * d) / f)) + g))
+---

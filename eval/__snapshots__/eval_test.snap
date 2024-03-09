@@ -1,0 +1,248 @@
+
+[TestEval/cond - 1]
+{
+  "input": "if (1 < 2) { 10 }",
+  "out": "10"
+}
+
+---
+
+[TestEval/cond#01 - 1]
+{
+  "input": "if (1 > 2) { 10 }",
+  "out": "null"
+}
+
+---
+
+[TestEval/cond#02 - 1]
+{
+  "input": "if (1 > 2) { 10 } else { 20 }",
+  "out": "20"
+}
+
+---
+
+[TestEval/cond#03 - 1]
+{
+  "input": "if (1 < 2) { 10 } else { 20 }",
+  "out": "10"
+}
+
+---
+
+[TestEval/environment - 1]
+{
+  "input": "let x = 5; return x + 5;",
+  "out": "10"
+}
+
+---
+
+[TestEval/environment#01 - 1]
+{
+  "input": "let newAdder = fn(x) { fn(y) { x + y }; };\n\t\t\t\tlet addTwo = newAdder(2);\n\t\t\t\taddTwo(2);",
+  "out": "4"
+}
+
+---
+
+[TestEval/environment#02 - 1]
+{
+  "input": "let f = fn(x) { let x = 10; x + 2; }; f(5);",
+  "out": "12"
+}
+
+---
+
+[TestEval/environment#03 - 1]
+{
+  "input": "let x = 1; let f = fn(x) { x + 2; };  f(5);",
+  "out": "7"
+}
+
+---
+
+[TestEval/error - 1]
+{
+  "input": "5 + true",
+  "out": "ERROR: type mismatch: INTEGER + BOOLEAN"
+}
+
+---
+
+[TestEval/eval_int - 1]
+{
+  "input": "5",
+  "out": "5"
+}
+
+---
+
+[TestEval/false - 1]
+{
+  "input": "false",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix - 1]
+{
+  "input": "true == true",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix#01 - 1]
+{
+  "input": "false == false",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix#02 - 1]
+{
+  "input": "true == false",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix#03 - 1]
+{
+  "input": "true != false",
+  "out": "false"
+}
+
+---
+
+[TestEval/infix#04 - 1]
+{
+  "input": "false != true",
+  "out": "false"
+}
+
+---
+
+[TestEval/infix#05 - 1]
+{
+  "input": "(1 < 2) == true",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix#06 - 1]
+{
+  "input": "(1 < 2) == false",
+  "out": "true"
+}
+
+---
+
+[TestEval/infix#07 - 1]
+{
+  "input": "(1 > 2) == true",
+  "out": "false"
+}
+
+---
+
+[TestEval/infix#08 - 1]
+{
+  "input": "(1 > 2) == false",
+  "out": "false"
+}
+
+---
+
+[TestEval/prefix_minus - 1]
+{
+  "input": "-5",
+  "out": "-5"
+}
+
+---
+
+[TestEval/return - 1]
+{
+  "input": "return 10;",
+  "out": "10"
+}
+
+---
+
+[TestEval/sample_program - 1]
+{
+  "input": "\n\t\t\tif (10 > 1) {\n\t\t\t\tif (10 > 1) {\n\t\t\t\t\treturn 10;\n\t\t\t\t}\n\t\t\t\treturn 1;\n\t\t\t}\n\t\t\t",
+  "out": "10"
+}
+
+---
+
+[TestEval/true - 1]
+{
+  "input": "true",
+  "out": "true"
+}
+
+---
+
+[TestEval/truthy_`!!0` - 1]
+{
+  "input": "!!0",
+  "out": "false"
+}
+
+---
+
+[TestEval/truthy_`!!5` - 1]
+{
+  "input": "!!5",
+  "out": "true"
+}
+
+---
+
+[TestEval/truthy_`!!false` - 1]
+{
+  "input": "!!false",
+  "out": "true"
+}
+
+---
+
+[TestEval/truthy_`!!true` - 1]
+{
+  "input": "!!true",
+  "out": "true"
+}
+
+---
+
+[TestEval/truthy_`!5` - 1]
+{
+  "input": "!5",
+  "out": "false"
+}
+
+---
+
+[TestEval/truthy_`!false` - 1]
+{
+  "input": "!false",
+  "out": "false"
+}
+
+---
+
+[TestEval/truthy_`!true` - 1]
+{
+  "input": "!true",
+  "out": "false"
+}
+
+---
